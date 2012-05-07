@@ -1,0 +1,5 @@
+{
+	"category": "libraries",
+	"title":    "li3_taggable",
+	"description": "The `li3_taggable` library adds tag functionality to models for document databases (i.e. MongoDB).  It requires the `li3_behaviors` library to function."
+}
