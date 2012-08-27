@@ -28,8 +28,8 @@ namespace li3_taggable\extensions\data\behavior;
  *
  * When bound to a model, `Taggable` adds an instance method called `tags()`
  * which takes the following arguments:
- * 
- *     - $tags _string|array_: (optional) A single tag or array of tags.  Use an empty array 
+ *
+ *     - $tags _string|array_: (optional) A single tag or array of tags.  Use an empty array
  *         to unset the tag list or null (the default) to just return the current tags.
  *     - $remove _boolean_: (optional) If true, will remove the specified tags rather than add them
  *
@@ -71,7 +71,7 @@ class Taggable extends \lithium\core\StaticObject {
 	 * Binds a `tags` instance method to a model.  Also adds save filter that
 	 * to the model which converts comma-separated tag strings to arrays
 	 * and after a successful save, ensures that each tag has been added to the
-	 * collection for the configured `Tags` model. 
+	 * collection for the configured `Tags` model.
 	 *
 	 * @param string $model Fully-namespaced model class name this is being bound to
 	 * @param array $options Valid options include:
@@ -86,7 +86,8 @@ class Taggable extends \lithium\core\StaticObject {
 		$config += static::$_defaults;
 		static::$_configurations[$model] = $config;
 
-		$tags = function($entity, $tags = null, $remove = false) use ($config) {
+		$tags = function($entity, $tags = null, $remove = false, $options = array()) use ($config) {
+			$config = $options + $config;
 			$field = $config['field'];
 			if ($tags !== null) {
 				if (!$entity->$field) {
